@@ -1,11 +1,17 @@
 from django.shortcuts import render
+from .models import Produto
 
 def index(request):
     context = {
         "texto": "Olá mundo!",
     }
-    return render(request,'index.html',context)
+    return render(request,'index.html', context)
 
 def produtos(request):
-    return render(request, 'produto.html')
+    produtos = Produto.objects.all()
+    context ={
+        'produtos': produtos
+        
+    }
+    return render(request, 'produto.html', context)
 
