@@ -1,6 +1,10 @@
+views:
+
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto
 from django.http.response import HttpResponse
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -15,7 +19,7 @@ def produtos(request):
     context = {
         'produtos' : produtos,
     }
-    return render(request, 'produto.html', context)
+    return render(request, 'produtos.html', context)
 
 def cad_produto(request):
 
@@ -58,4 +62,17 @@ def apagar_produto(request, id):
     prod = get_object_or_404(Produto, id=id)
     prod.delete()
     return redirect('url_produtos')
-    
+
+def entrar(request):
+    if request.method == "GET":
+        return render(request, 'entrar.html')
+    else:
+        username = request.POST.get('nome')
+        password = request.POST.get('senha')
+        user = authenticate(username = username, password = password)
+
+        if user:
+            login(request, user)
+            return HttpResponse("Usuário logado com sucesso")
+        else:
+            return HttpResponse("Falha no login")
