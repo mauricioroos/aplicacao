@@ -27,9 +27,9 @@
                 <th scope="row">{{ p.id }}</th>
                 <td>{{ p.nome }}</td>
                 <td>{{ p.preco }}</td>
-                <td>{{ p.qtde }}</td>
+                <td>{{ p.quantidade }}</td>
                 <td>
-                    <form action="{% url 'url_atualizar_produto' p.id %}">
+                    <form action="{% url 'url_atualizar_produtos' p.id %}">
                         <input type="submit" name="btn_atualizar" value="Atualizar" class="btn btn-primary">
                     </form>
                 </td>
@@ -42,8 +42,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <form action="{% url 'url_cad_produto' %}" method="GET">
-        <input type="submit" name="btn_novo" value="Novo Produto" class="btn btn-success">
-    </form>
+    <input type="submit" name="Novo Produto" class="btn btn-success">
 </body>
 </html>
