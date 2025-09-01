@@ -4,7 +4,6 @@ from django.http.response import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 
-# Create your views here.
 
 def index(request):
     context = {
@@ -42,6 +41,7 @@ def atualizar_produtos(request, id):
         context = {
             'prod': prod,
         }
+        # Garanta que o nome do seu arquivo HTML seja "atualizar_produtos.html" (com s)
         return render(request, 'atualizar_produtos.html', context)
     elif request.method == "POST":
         nome = request.POST.get('nome')
@@ -52,7 +52,6 @@ def atualizar_produtos(request, id):
         prod.preco = preco
         prod.quantidade = quantidade
         prod.save()
-
     return redirect('url_produto')
 
 def apagar_produto(request, id):
