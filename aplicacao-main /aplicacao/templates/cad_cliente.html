@@ -1,0 +1,29 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Cadastro de Cliente</h1>
+        <hr>
+        <form action="{% url 'url_cad_cliente' %}" method="POST">
+            {% csrf_token %}
+            
+            <h3>Dados Pessoais</h3>
+            {% bootstrap_form form_cliente %}
+            
+            <h3 class="mt-4">Endereço</h3>
+            {% bootstrap_form form_perfil %}
+            
+            <br>
+            <button type="submit" class="btn btn-success">Salvar Cadastro</button>
+        </form>
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+</body>
+</html>
